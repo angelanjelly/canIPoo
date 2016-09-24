@@ -1,17 +1,14 @@
 import React from 'react';
 import CreateTodo from './create-todo';
 import TodosList from './todos-list';
-import WaitingList from './waiting';
+//import WaitingList from './waiting';
+import Subheader from 'material-ui/Subheader';
+import {List, ListItem} from 'material-ui/List';
 import {deepOrange500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500,
-  },
-});
+const waiting = ['angela', 'ben the dog'];
 
 const todos = [
 {
@@ -23,6 +20,12 @@ const todos = [
 	isCompleted: false
 }
 ];
+
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: deepOrange500,
+  },
+});
 
 const styles = {
   container: {
@@ -40,7 +43,17 @@ const styles = {
   	margin: 'auto',
   	display: 'inline-block',
   	fontSize: 15
-  }
+  },
+  	waitingText: {
+		fontSize: 30,
+		fontStyle: "georgia",
+		color: 'grey'
+	},
+	list: {
+		width: 300,
+		display: 'inline-block',
+
+	}
 };
 
 export default class App extends React.Component {
@@ -48,7 +61,8 @@ export default class App extends React.Component {
 		super(props);
 
 		this.state = {
-			todos
+			todos,
+			waiting
 		};
 	}
 	render() {
@@ -57,7 +71,17 @@ export default class App extends React.Component {
 				<div style={styles.container}>
 					<h1 style={styles.title}>Can I P<img src="/src/img/poo.png" width="50" height="50" /><img src="/src/img/poo.png" width="50" height="50" />?</h1>
 					<CreateTodo style={styles.inside} todos={this.state.todos} createTask={this.createTask.bind(this)} />
-					<WaitingList />
+
+					<div style={styles.waitingText}>
+					<br />
+					<List style={styles.list}>
+						<Subheader style={{fontSize: 30}}>Waiting Queue</Subheader>
+						{waiting.map(function(listValue) {
+							return <ListItem style={{color:'grey'}}key={waiting.indexOf(listValue)}>{waiting.indexOf(listValue)+1}. {listValue}<br /></ListItem>
+						})}
+					</List>
+					</div>
+
 					<TodosList 
 						style={styles.inside}
 						todos={this.state.todos}

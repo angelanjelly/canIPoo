@@ -11,6 +11,9 @@ const styles = {
   		fontStyle: "georgia",
   		width: 200,
   		height: 35,
+	},
+	action: {
+		width: 200
 	}
 }
 export default class TodosListItem extends React.Component {
@@ -49,7 +52,7 @@ export default class TodosListItem extends React.Component {
 	renderActionsSection() {
 		if (this.state.isEditing) {
 			return (
-				<TableRowColumn>
+				<TableRowColumn style={styles.action}>
 					<RaisedButton onClick={this.onSaveClick.bind(this)}>Save</RaisedButton>
 					<RaisedButton onClick={this.onCancelClick.bind(this)}>Cancel</RaisedButton>
 				</TableRowColumn>
@@ -57,7 +60,7 @@ export default class TodosListItem extends React.Component {
 		}
 
 		return (
-			<TableRowColumn>
+			<TableRowColumn style={styles.action}>
 				<RaisedButton onClick={this.onEditClick.bind(this)}>Edit</RaisedButton>
 				<RaisedButton onClick={this.props.deleteTask.bind(this, this.props.task)}>Delete</RaisedButton>
 			</TableRowColumn>
