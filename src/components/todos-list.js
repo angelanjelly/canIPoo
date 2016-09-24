@@ -6,12 +6,12 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 
 const styles = {
   container: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontStyle: "georgia",
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'inline-block', //answer for centering the table,
-    width: 700
+    width: 1000
   },
   text: {
   	fontSize: 10,
@@ -31,9 +31,10 @@ export default class TodosList extends React.Component {
 
 	renderItems() {
 		const props = _.omit(this.props, 'todos');
-
-		return _.map(this.props.todos, (todo, index) => <TodosListItem key={index} {...todo} {...props} />);
+		return _.map(this.props.todos, (todo, index) => 
+			<TodosListItem key={index} {...todo} {...props} />);
 	}
+
 	//this.props => {todos: array2} this.props.todos
 	//{...todo} =
 	//task={todo.task} isCompleted={todo.isCompleted}

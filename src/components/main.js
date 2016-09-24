@@ -8,7 +8,7 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const waiting = ['angela', 'ben the dog'];
+//const waiting = ['angela', 'ben the dog'];
 
 const todos = [
 {
@@ -56,6 +56,8 @@ const styles = {
 	}
 };
 
+let waiting = [];
+
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -65,23 +67,13 @@ export default class App extends React.Component {
 			waiting
 		};
 	}
+
 	render() {
 		return (
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<div style={styles.container}>
 					<h1 style={styles.title}>Can I P<img src="/src/img/poo.png" width="50" height="50" /><img src="/src/img/poo.png" width="50" height="50" />?</h1>
 					<CreateTodo style={styles.inside} todos={this.state.todos} createTask={this.createTask.bind(this)} />
-
-					<div style={styles.waitingText}>
-					<br />
-					<List style={styles.list}>
-						<Subheader style={{fontSize: 30}}>Waiting Queue</Subheader>
-						{waiting.map(function(listValue) {
-							return <ListItem style={{color:'grey'}}key={waiting.indexOf(listValue)}>{waiting.indexOf(listValue)+1}. {listValue}<br /></ListItem>
-						})}
-					</List>
-					</div>
-
 					<TodosList 
 						style={styles.inside}
 						todos={this.state.todos}
@@ -97,10 +89,17 @@ export default class App extends React.Component {
 	toggleTask(task) {
 		const foundTodo = _.find(this.state.todos, todo => todo.task === task)
 		foundTodo.isCompleted = !foundTodo.isCompleted;
-		this.setState({ todos: this.state.todos})
+		this.setState({ todos: this.state.todos })
 	}
 
 	createTask(task) {
+		// let taskIdx = this.state.todos.length;
+		// let taskColor = null;
+		// if (taskIdx >= 5) {
+		// 	taskColor = true;
+		// } else {
+		// 	taskColor = false;
+		// }
 		this.state.todos.push({
 			task,
 			isCompleted: false
@@ -117,6 +116,5 @@ export default class App extends React.Component {
 		_.remove(this.state.todos, todo => todo.task === taskToDelete);
 		this.setState({ todos: this.state.todos }); 
 	}
-
 
 }
