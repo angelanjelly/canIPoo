@@ -32,22 +32,22 @@ export default class CreateItem extends React.Component {
 		event.preventDefault();
 
 		const createInput = this.refs.createInput;
-		const task = createInput.value;
-		const validateInput = this.validateInput(task);
+		const nickname = createInput.value;
+		const validateInput = this.validateInput(nickname);
 		if (validateInput) {
 			this.setState({ error: validateInput});
 			return;
 		}
 
 		this.setState({ error: null })
-		this.props.createTask(task);
+		this.props.createNickname(nickname);
 		this.refs.createInput.value = "";
 	}
 
-    validateInput(task) {
-        if (!task) {
+    validateInput(nickname) {
+        if (!nickname) {
             return 'Please enter a nickname.';
-        } else if (_.find(this.props.todos, todo => todo.task === task)) {
+        } else if (_.find(this.props.todos, todo => todo.nickname === nickname)) {
             return 'Nickname already exists.';
         } else {
             return null;

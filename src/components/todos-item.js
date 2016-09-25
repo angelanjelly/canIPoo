@@ -18,103 +18,72 @@ const styles = {
 	}
 }
 export default class TodosListItem extends React.Component {
-	constructor(props) {
-		super(props);
 
-		this.state = {
-			isEditing: false,
-			isItTheFirstOne: false,
-			isThisForMales: false
-		}
-	}
-
-	renderTaskSection() {
-		const { task, isCompleted } = this.props;
-		const taskStyle = {
-			color: isCompleted ? 'brown' : 'brown',
+	renderNicknameSection() {
+		const { nickname, whichOneIsIt } = this.props;
+		const nicknameStyle = {
+			color: whichOneIsIt ? 'red' : 'brown',
 			cursor: 'pointer',
 			fontStyle: 'georgia',
 			fontSize: 20
+	}
+		if (whichOneIsIt === '1') {
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/bathroom.jpg" width="40" height="40" />
+					<span style={{color: 'white'}}>___ __</span>{ nickname }
+				</TableRowColumn>
+			)
+		} else if (whichOneIsIt === '2'){
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/woman.jpg" height="40" />
+					<span style={{color: 'white'}}>_______</span>{ nickname }
+				</TableRowColumn>
+			)
+		} else if (whichOneIsIt === '3') {
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/man.jpg" height="40" />
+					<span style={{color: 'white'}}>_______</span>{ nickname }
+				</TableRowColumn>
+			)				
+		} else {
+			return (
+				<TableRowColumn style={styles.form}>
+					{ nickname }
+				</TableRowColumn>
+			)
 		}
-
-		if (this.state.isEditing) {
-			if (this.state.isItTheFirstOne) {
-				return (
-					<TableRowColumn>
-						<img src="src/img/bathroom.jpg" width="40" height="40" />
-						{ task }
-					</TableRowColumn>
-				)
-			} else if (!this.state.isItTheFirstOne && !this.state.isThisForMales){
-				return (
-					<TableRowColumn>
-						<img src="src/img/woman.jpg" height="40" />
-						{ task }
-					</TableRowColumn>
-				)
-			} else if (this.state.isThisForMales) {
-				return (
-					<TableRowColumn>
-						<img src="src/img/man.jpg" height="40" />
-						{ task }
-					</TableRowColumn>
-				)				
-			} 
-		}
-		return (
-
-			<TableRowColumn style={taskStyle}>
-				{ task }
-			</TableRowColumn>
-
-		);
 	}
 	
 	renderActionsSection() {
-		if (this.state.isEditing) {
-			return (
-				<TableRowColumn style={styles.action}>
-					<RaisedButton style={{margin: 10}} onClick={this.onSaveClick.bind(this)}>Nevermind</RaisedButton><br />
-					<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>DONE</RaisedButton>
-				</TableRowColumn>
-			);
-		}
-
 		return (
 			<TableRowColumn style={styles.action}>
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick.bind(this)}>GenderNeutral</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick2.bind(this)}>Women</RaisedButton><br />
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick3.bind(this)}>Men</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>Nevermind</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClickNeutral.bind(this, this.props.nickname)}>GenderNeutral</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClickWomen.bind(this, this.props.nickname)}>Women</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onClickMen.bind(this, this.props.nickname)}>Men</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.props.deleteNickname.bind(this, this.props.nickname)}>X</RaisedButton>
 			</TableRowColumn>
 		);
 	};
+
 	render() {
 		return (
 			<TableRow>
-				{this.renderTaskSection()}
+				{this.renderNicknameSection()}
 				{this.renderActionsSection()}
 			</TableRow>
 		);
 	}
-	onEditClick() {
-		this.setState({ isEditing: true, isItTheFirstOne: true, isThisForMales: false});
+
+	onClickNeutral(nickname) {
+		this.props.updateNickname(nickname, '1');
 	}
-	onEditClick2() {
-		this.setState({ isEditing: true, isItTheFirstOne: false, isThisForMales: false});
+	onClickWomen(nickname) {
+		this.props.updateNickname(nickname, '2');
 	}
-	onEditClick3() {
-		this.setState({ isEditing: true, isItTheFirstOne: false, isThisForMales: true});
-	}
-	onCancelClick() {
-		this.setState({ isEditing: false});
-	}
-	onSaveClick(event) {
-		event.preventDefault();
-		//const oldTask = this.props.task;
-		//const newTask = this.refs.editInput.value;
-		
-		//this.props.saveTask(oldTask, newTask);
-		this.setState({ isEditing: false });
+	onClickMen(nickname) {
+		this.props.updateNickname(nickname, '3');
 	}
 }

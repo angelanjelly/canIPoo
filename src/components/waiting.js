@@ -30,9 +30,9 @@ export default class Waiting extends React.Component {
 			
 			for(let i = 5; i <= this.props.todos.length - 1; i++) {
 				if (i === 5) {
-					result.push(<span key={i}><ListItem style={{color:'grey'}}> Next in line : {this.props.todos[i].task}<br /></ListItem></span>)
+					result.push(<span key={i}><ListItem style={{color:'grey'}}> Next in line : {this.props.todos[i].nickname}<br /></ListItem></span>)
 				} else {
-					result.push(<span key={i}><ListItem style={{color:'grey'}}> {this.props.todos[i].task}<br /></ListItem></span>)
+					result.push(<span key={i}><ListItem style={{color:'grey'}}> {this.props.todos[i].nickname}<br /></ListItem></span>)
 				}
 			}
 		}

@@ -17,7 +17,7 @@ export default class Title extends React.Component {
 				<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.props.toiletPaperForGenderNeu.bind(null, this)} />
 				<span style={{color:'white'}}>_______</span>
 				<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.props.toiletPaperForWomens.bind(null, this)} /><br />
-				<span>Gender Neutral Bathroom</span><span style={{color:'white'}}>_</span><span>Women's Bathroom   </span>
+				<span>"Gender Neutral Bathroom"</span><span style={{color:'white'}}>_</span><span>"Women's Bathroom   "</span>
 			</div>
 		);
 	}
