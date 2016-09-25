@@ -9,29 +9,13 @@ import {slackUrl} from '../../secret.js';
 import * as firebase from 'firebase';
 import { FirebaseapiKey, FirebaseauthDomain, FirebaseDatabase, FirebaseStorage } from '../../secret.js';
 
-// const todos = [
-// {
-// 	task: 'I\'ve been waiting since 10am',
-// 	isCompleted: false
-// },
-// {
-// 	task: 'I NEED TO USE IT ASAP',
-// 	isCompleted: false
-// }
-// ];
-
 const todos = [];
 
-//const backgroundImageFile = '/src/img/tile.jpg';
 const styles = {
 	container: {
 	    textAlign: 'center',
 	    fontStyle: "georgia",
 	    margin: 'auto',
-	    // backgroundImage: 'url('+ backgroundImageFile + ')',
-	    // backgroundSize: 'cover',
-	    // overflow: 'hidden',
-	    // backgroundOpacity: '0.2'
 	},
 	title: {
 	  	fontSize: 70,
@@ -49,14 +33,6 @@ const styles = {
 	}
 };
 
-
-// const config = {
-// 	apiKey: FirebaseapiKey,
-// 	authDomain: FirebaseauthDomain,
-// 	databaseURL: FirebaseDatabase,
-// 	storageBucket: FirebaseStorage
-// };
-
 var config = {
 	apiKey: 'AIzaSyBHzbZP6UOyjRSiowzPL7owdC49nl-wIB0',
 	authDomain: 'canip-3ccfa.firebaseio.com',
@@ -66,7 +42,6 @@ var config = {
 
 firebase.initializeApp(config);
 
-// const rootRef = firebase.database().ref();
 const database = firebase.database();
 
 export default class App extends React.Component {
@@ -116,13 +91,11 @@ export default class App extends React.Component {
 			</div>
 		);
 	}
-
 	toggleTask(task) {
 		const foundTodo = _.find(this.state.todos, todo => todo.task === task)
 		foundTodo.isCompleted = !foundTodo.isCompleted;
 		this.setState({ todos: this.state.todos })
 	}
-
 	createTask(task) {
 		var newTodo = {
 			task: task,
@@ -131,13 +104,11 @@ export default class App extends React.Component {
 		database.ref('todos').push(newTodo);
 		this.setState({ todos: this.state.todos.concat(newTodo) });
 	}
-
 	saveTask(oldTask, newTask) {
 		const foundTodo = _.find(this.state.todos, todo => todo.task === oldTask);
 		foundTodo.task = newTask;
 		// this.setState({ todos: this.state.todos });
 	}
-
 	deleteTask(taskToDelete) {
 		var idx = this.state.todos.filter(function (todo) {
 			return taskToDelete === todo.task;
@@ -145,11 +116,9 @@ export default class App extends React.Component {
 		var keyVal = idx[0].id; //an array of an object
 		console.log('idx',idx);
 		database.ref('todos').child(keyVal).remove();
-
 		_.remove(this.state.todos, todo => todo.task === taskToDelete);
 		// this.setState({ todos: this.state.todos });
 	}
-
 	toiletPaperForGenderNeu() {
 		$.ajax({
   		type: "POST",
@@ -159,7 +128,6 @@ export default class App extends React.Component {
 		});
 		console.log('requesting some toilet paper')
 	}
-
 	toiletPaperForWomens() {
 		$.ajax({
   		type: "POST",

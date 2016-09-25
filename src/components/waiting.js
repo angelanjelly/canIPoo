@@ -26,7 +26,7 @@ export default class Waiting extends React.Component {
 	renderWaiting() {
 		let result = [];
 		if (this.props.todos.length > 5){
-			result.push(<span><Subheader style={{ fontSize: 30 }}>Waiting Queue</Subheader></span>);
+			result.push(<span key={-1}><Subheader style={{ fontSize: 30 }}>Waiting Queue</Subheader></span>);
 			
 			for(let i = 5; i <= this.props.todos.length - 1; i++) {
 				if (i === 5) {

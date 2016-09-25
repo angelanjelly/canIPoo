@@ -31,7 +31,7 @@ export default class TodosListItem extends React.Component {
 	renderTaskSection() {
 		const { task, isCompleted } = this.props;
 		const taskStyle = {
-			color: isCompleted ? 'brown' : 'pink',
+			color: isCompleted ? 'brown' : 'brown',
 			cursor: 'pointer',
 			fontStyle: 'georgia',
 			fontSize: 20
@@ -95,7 +95,6 @@ export default class TodosListItem extends React.Component {
 			</TableRowColumn>
 		);
 	};
-
 	render() {
 		return (
 			<TableRow>
@@ -104,11 +103,9 @@ export default class TodosListItem extends React.Component {
 			</TableRow>
 		);
 	}
-
 	onEditClick() {
 		this.setState({ isEditing: true, isItTheFirstOne: true, isThisForMales: false});
 	}
-
 	onEditClick2() {
 		this.setState({ isEditing: true, isItTheFirstOne: false, isThisForMales: false});
 	}
@@ -120,7 +117,6 @@ export default class TodosListItem extends React.Component {
 	}
 	onSaveClick(event) {
 		event.preventDefault();
-
 		//const oldTask = this.props.task;
 		//const newTask = this.refs.editInput.value;
 		
