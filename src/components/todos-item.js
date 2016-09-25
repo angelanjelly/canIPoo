@@ -18,17 +18,10 @@ const styles = {
 	}
 }
 export default class TodosListItem extends React.Component {
-	constructor(props) {
-		super(props);
 
-		this.state = {
-
-		}
-	}
-
-	renderTaskSection() {
-		const { task, whichOneIsIt } = this.props;
-		const taskStyle = {
+	renderNicknameSection() {
+		const { nickname, whichOneIsIt } = this.props;
+		const nicknameStyle = {
 			color: whichOneIsIt ? 'red' : 'brown',
 			cursor: 'pointer',
 			fontStyle: 'georgia',
@@ -38,27 +31,27 @@ export default class TodosListItem extends React.Component {
 			return (
 				<TableRowColumn style={styles.form}>
 					<img src="src/img/bathroom.jpg" width="40" height="40" />
-					<span style={{color: 'white'}}>___ __</span>{ task }
+					<span style={{color: 'white'}}>___ __</span>{ nickname }
 				</TableRowColumn>
 			)
 		} else if (whichOneIsIt === '2'){
 			return (
 				<TableRowColumn style={styles.form}>
 					<img src="src/img/woman.jpg" height="40" />
-					<span style={{color: 'white'}}>_______</span>{ task }
+					<span style={{color: 'white'}}>_______</span>{ nickname }
 				</TableRowColumn>
 			)
 		} else if (whichOneIsIt === '3') {
 			return (
 				<TableRowColumn style={styles.form}>
 					<img src="src/img/man.jpg" height="40" />
-					<span style={{color: 'white'}}>_______</span>{ task }
+					<span style={{color: 'white'}}>_______</span>{ nickname }
 				</TableRowColumn>
 			)				
 		} else {
 			return (
 				<TableRowColumn style={styles.form}>
-					{ task }
+					{ nickname }
 				</TableRowColumn>
 			)
 		}
@@ -67,10 +60,10 @@ export default class TodosListItem extends React.Component {
 	renderActionsSection() {
 		return (
 			<TableRowColumn style={styles.action}>
-				<RaisedButton style={{margin: 10}} onClick={this.onClickNeutral.bind(this, this.props.task)}>GenderNeutral</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.onClickWomen.bind(this, this.props.task)}>Women</RaisedButton><br />
-				<RaisedButton style={{margin: 10}} onClick={this.onClickMen.bind(this, this.props.task)}>Men</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>X</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClickNeutral.bind(this, this.props.nickname)}>GenderNeutral</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClickWomen.bind(this, this.props.nickname)}>Women</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onClickMen.bind(this, this.props.nickname)}>Men</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.props.deleteNickname.bind(this, this.props.nickname)}>X</RaisedButton>
 			</TableRowColumn>
 		);
 	};
@@ -78,19 +71,19 @@ export default class TodosListItem extends React.Component {
 	render() {
 		return (
 			<TableRow>
-				{this.renderTaskSection()}
+				{this.renderNicknameSection()}
 				{this.renderActionsSection()}
 			</TableRow>
 		);
 	}
 
-	onClickNeutral(todo) {
-		this.props.updateTask(todo, '1');
+	onClickNeutral(nickname) {
+		this.props.updateNickname(nickname, '1');
 	}
-	onClickWomen(todo) {
-		this.props.updateTask(todo, '2');
+	onClickWomen(nickname) {
+		this.props.updateNickname(nickname, '2');
 	}
-	onClickMen(todo) {
-		this.props.updateTask(todo, '3');
+	onClickMen(nickname) {
+		this.props.updateNickname(nickname, '3');
 	}
 }
