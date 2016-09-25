@@ -53,11 +53,10 @@ export default class App extends React.Component {
 		database.ref('todos').on('value', function(snap) {
 			var todos = [];
 			snap.forEach(function(data) {
-				console.log('heheheheh');
 				var todo = {
 					id: data.key,
 					task: data.val().task,
-					isCompleted: false
+					isCompleted: data.val().isCompleted
 				}
 				todos.push(todo);
 			});
@@ -74,6 +73,8 @@ export default class App extends React.Component {
 				<CreateItem style={styles.inside} todos={this.state.todos} createTask={this.createTask.bind(this)} />
 				<TodosList
 					style={styles.inside}
+					componentDidMount={this.updateTask.bind(this)}
+					updateTask={this.updateTask.bind(this)}
 					todos={this.state.todos}
 					saveTask={this.saveTask.bind(this)}
 					deleteTask={this.deleteTask.bind(this)}
@@ -92,7 +93,6 @@ export default class App extends React.Component {
 	saveTask(oldTask, newTask) {
 		const foundTodo = _.find(this.state.todos, todo => todo.task === oldTask);
 		foundTodo.task = newTask;
-		// this.setState({ todos: this.state.todos });
 	}
 	deleteTask(taskToDelete) {
 		var idx = this.state.todos.filter(function (todo) {
@@ -102,8 +102,18 @@ export default class App extends React.Component {
 		console.log('idx',idx);
 		database.ref('todos').child(keyVal).remove();
 		_.remove(this.state.todos, todo => todo.task === taskToDelete);
-		// this.setState({ todos: this.state.todos });
 	}
+
+	updateTask(taskToUpdate, status) {
+		var idx = this.state.todos.filter(function (todo) {
+			return taskToUpdate === todo.task;
+		});
+		var keyVal = idx[0].id; //an array of an object
+		console.log('status', status);
+		database.ref('todos').child(keyVal).update({task: taskToUpdate, isCompleted: status });
+		this.componentDidMount();
+	}
+
 	toiletPaperForGenderNeu() {
 		$.ajax({
   		type: "POST",
