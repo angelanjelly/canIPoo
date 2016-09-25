@@ -75,6 +75,7 @@ export default class TodosListItem extends React.Component {
 
 		);
 	}
+	
 	renderActionsSection() {
 		if (this.state.isEditing) {
 			return (

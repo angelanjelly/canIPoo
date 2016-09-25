@@ -6,17 +6,21 @@ import Subheader from 'material-ui/Subheader';
 import {List, ListItem} from 'material-ui/List';
 import $ from 'jquery';
 import {slackUrl} from '../../secret.js';
+import * as firebase from 'firebase';
+import { FirebaseapiKey, FirebaseauthDomain, FirebaseDatabase, FirebaseStorage } from '../../secret.js';
 
-const todos = [
-{
-	task: 'I\'ve been waiting since 10am',
-	isCompleted: false
-},
-{
-	task: 'I NEED TO USE IT ASAP',
-	isCompleted: false
-}
-];
+// const todos = [
+// {
+// 	task: 'I\'ve been waiting since 10am',
+// 	isCompleted: false
+// },
+// {
+// 	task: 'I NEED TO USE IT ASAP',
+// 	isCompleted: false
+// }
+// ];
+
+const todos = [];
 
 //const backgroundImageFile = '/src/img/tile.jpg';
 const styles = {
@@ -46,13 +50,49 @@ const styles = {
 };
 
 
+// const config = {
+// 	apiKey: FirebaseapiKey,
+// 	authDomain: FirebaseauthDomain,
+// 	databaseURL: FirebaseDatabase,
+// 	storageBucket: FirebaseStorage
+// };
+
+var config = {
+	apiKey: 'AIzaSyBHzbZP6UOyjRSiowzPL7owdC49nl-wIB0',
+	authDomain: 'canip-3ccfa.firebaseio.com',
+	databaseURL: 'https://canip-3ccfa.firebaseio.com',
+	storageBucket: 'canip-3ccfa.appspot.com'
+}
+
+firebase.initializeApp(config);
+
+// const rootRef = firebase.database().ref();
+const database = firebase.database();
+
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			todos
+  			todos
 		};
+	}
+
+	componentDidMount() {
+		const that = this;
+		database.ref('todos').on('value', function(snap) {
+			var todos = [];
+			snap.forEach(function(data) {
+				console.log('heheheheh');
+				var todo = {
+					id: data.key,
+					task: data.val().task,
+					isCompleted: false
+				}
+				todos.push(todo);
+			});
+			that.setState({todos: todos});
+		});
 	}
 
 	render() {
@@ -84,21 +124,30 @@ export default class App extends React.Component {
 	}
 
 	createTask(task) {
-		this.state.todos.push({
-			task,
+		var newTodo = {
+			task: task,
 			isCompleted: false
-		});
-		this.setState({ todos: this.state.todos });
+		};
+		database.ref('todos').push(newTodo);
+		this.setState({ todos: this.state.todos.concat(newTodo) });
 	}
 
 	saveTask(oldTask, newTask) {
 		const foundTodo = _.find(this.state.todos, todo => todo.task === oldTask);
 		foundTodo.task = newTask;
-		this.setState({ todos: this.state.todos });
+		// this.setState({ todos: this.state.todos });
 	}
+
 	deleteTask(taskToDelete) {
+		var idx = this.state.todos.filter(function (todo) {
+			return taskToDelete === todo.task;
+		});
+		var keyVal = idx[0].id; //an array of an object
+		console.log('idx',idx);
+		database.ref('todos').child(keyVal).remove();
+
 		_.remove(this.state.todos, todo => todo.task === taskToDelete);
-		this.setState({ todos: this.state.todos }); 
+		// this.setState({ todos: this.state.todos });
 	}
 
 	toiletPaperForGenderNeu() {
