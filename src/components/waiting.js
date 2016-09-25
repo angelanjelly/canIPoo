@@ -10,18 +10,33 @@ const styles = {
 	},
 	list: {
 		width: 300,
-		display: 'inline-block',
-
+		display: 'inline-block'
 	}
-}
+};
 
-
-
-export default class WaitingList extends React.Component {
+export default class Waiting extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {};
+		this.state = {
+
+		};
+	}
+
+	renderWaiting() {
+		let result = [];
+		if (this.props.todos.length > 5){
+			result.push(<span><Subheader style={{ fontSize: 30 }}>Waiting Queue</Subheader></span>);
+			
+			for(let i = 5; i <= this.props.todos.length - 1; i++) {
+				if (i === 5) {
+					result.push(<span key={i}><ListItem style={{color:'grey'}}> Next in line : {this.props.todos[i].task}<br /></ListItem></span>)
+				} else {
+					result.push(<span key={i}><ListItem style={{color:'grey'}}> {this.props.todos[i].task}<br /></ListItem></span>)
+				}
+			}
+		}
+		return result;
 	}
 
 	render() {
@@ -29,10 +44,7 @@ export default class WaitingList extends React.Component {
 			<div style={styles.waitingText}>
 			<br />
 			<List style={styles.list}>
-				<Subheader style={{fontSize: 30}}>Waiting Queue</Subheader>
-				{this.props.waiting.map(function(listValue) {
-					return <ListItem style={{color:'grey'}}key={this.props.waiting.indexOf(listValue)}>{this.props.waiting.indexOf(listValue)+1}. {listValue}<br /></ListItem>
-				})}
+				{this.renderWaiting(this.props.todos)}
 			</List>
 			</div>
 		);

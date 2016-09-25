@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-export default class CreateTodo extends React.Component {
+export default class CreateItem extends React.Component {
 	constructor(props) {
 		super(props);
 

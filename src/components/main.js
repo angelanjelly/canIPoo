@@ -1,14 +1,11 @@
 import React from 'react';
-import CreateTodo from './create-todo';
+import CreateItem from './create-item';
 import TodosList from './todos-list';
-//import WaitingList from './waiting';
+import Waiting from './waiting';
 import Subheader from 'material-ui/Subheader';
 import {List, ListItem} from 'material-ui/List';
-import {deepOrange500} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-//const waiting = ['angela', 'ben the dog'];
+import $ from 'jquery';
+import {slackUrl} from '../../secret.js';
 
 const todos = [
 {
@@ -21,68 +18,62 @@ const todos = [
 }
 ];
 
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500,
-  },
-});
-
+//const backgroundImageFile = '/src/img/tile.jpg';
 const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 100,
-    fontStyle: "georgia",
-    margin: 'auto'
-  },
-  title: {
-  	fontSize: 100,
-  	marginTop: 0
-  },
-  inside: {
-  	textAlign: 'center',
-  	margin: 'auto',
-  	display: 'inline-block',
-  	fontSize: 15
-  },
-  	waitingText: {
-		fontSize: 30,
-		fontStyle: "georgia",
-		color: 'grey'
+	container: {
+	    textAlign: 'center',
+	    fontStyle: "georgia",
+	    margin: 'auto',
+	    // backgroundImage: 'url('+ backgroundImageFile + ')',
+	    // backgroundSize: 'cover',
+	    // overflow: 'hidden',
+	    // backgroundOpacity: '0.2'
+	},
+	title: {
+	  	fontSize: 70,
+	  	marginTop: 30
+	},
+	inside: {
+	  	textAlign: 'center',
+	  	margin: 'auto',
+	  	display: 'inline-block',
+	  	fontSize: 15
 	},
 	list: {
 		width: 300,
-		display: 'inline-block',
-
+		display: 'inline-block'
 	}
 };
 
-let waiting = [];
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			todos,
-			waiting
+			todos
 		};
 	}
 
 	render() {
 		return (
-			<MuiThemeProvider muiTheme={muiTheme}>
-				<div style={styles.container}>
-					<h1 style={styles.title}>Can I P<img src="/src/img/poo.png" width="50" height="50" /><img src="/src/img/poo.png" width="50" height="50" />?</h1>
-					<CreateTodo style={styles.inside} todos={this.state.todos} createTask={this.createTask.bind(this)} />
-					<TodosList 
-						style={styles.inside}
-						todos={this.state.todos}
-						toggleTask={this.toggleTask.bind(this)}
-						saveTask={this.saveTask.bind(this)}
-						deleteTask={this.deleteTask.bind(this)}
-					/>
-				</div>
-			</MuiThemeProvider>
+			<div style={styles.container}>
+				<h1 style={styles.title}>Can I P<img src="/src/img/poo.png" width="50" height="50" /><img src="/src/img/poo.png" width="50" height="50" />?</h1>
+				<h4>SOS! request for toilet paper </h4>
+				<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.toiletPaperForGenderNeu.bind(null, this)} />
+				<span style={{color:'white'}}>_______</span>
+				<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.toiletPaperForWomens.bind(null, this)} /><br />
+				<span>Gender Neutral Bathroom</span><span style={{color:'white'}}>_</span><span>Women's Bathroom   </span>
+				<Waiting todos={this.state.todos} />
+				<CreateItem style={styles.inside} todos={this.state.todos} createTask={this.createTask.bind(this)} />
+				<TodosList
+					style={styles.inside}
+					todos={this.state.todos}
+					toggleTask={this.toggleTask.bind(this)}
+					saveTask={this.saveTask.bind(this)}
+					deleteTask={this.deleteTask.bind(this)}
+				/>
+			</div>
 		);
 	}
 
@@ -93,13 +84,6 @@ export default class App extends React.Component {
 	}
 
 	createTask(task) {
-		// let taskIdx = this.state.todos.length;
-		// let taskColor = null;
-		// if (taskIdx >= 5) {
-		// 	taskColor = true;
-		// } else {
-		// 	taskColor = false;
-		// }
 		this.state.todos.push({
 			task,
 			isCompleted: false
@@ -115,6 +99,26 @@ export default class App extends React.Component {
 	deleteTask(taskToDelete) {
 		_.remove(this.state.todos, todo => todo.task === taskToDelete);
 		this.setState({ todos: this.state.todos }); 
+	}
+
+	toiletPaperForGenderNeu() {
+		$.ajax({
+  		type: "POST",
+ 		url: slackUrl,
+    	data: JSON.stringify({'text': 'SOS! PLEASE BRING SOME TOILET PAPER TO THE GENDER NEUTRAL BATHROOM!'}),
+    	dataType: 'JSON'
+		});
+		console.log('requesting some toilet paper')
+	}
+
+	toiletPaperForWomens() {
+		$.ajax({
+  		type: "POST",
+ 		url: slackUrl,
+    	data: JSON.stringify({'text': 'SOS! PLEASE BRING SOME TOILET PAPER TO THE WOMEN\'S BATHROOM!'}),
+    	dataType: 'JSON'
+		});
+		console.log('requesting some toilet paper')
 	}
 
 }

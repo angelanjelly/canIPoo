@@ -9,11 +9,12 @@ const styles = {
 		margin: 'auto',
   		fontSize: 20,
   		fontStyle: "georgia",
-  		width: 200,
+  		width: 'auto',
   		height: 35
 	},
 	action: {
-		
+		margin: 0,
+		textAlign: 'right'
 	}
 }
 export default class TodosListItem extends React.Component {
@@ -33,10 +34,9 @@ export default class TodosListItem extends React.Component {
 			color: isCompleted ? 'brown' : 'pink',
 			cursor: 'pointer',
 			fontStyle: 'georgia',
-			fontSize: 30
+			fontSize: 20
 		}
-//{ isCompleted ? null : <img src="src/img/bathroom.jpg" width="40" height="40" /> }
-//<input type="text" style={styles.form} defaultValue={task} ref="editInput" />
+
 		if (this.state.isEditing) {
 			if (this.state.isItTheFirstOne) {
 				return (
@@ -79,18 +79,18 @@ export default class TodosListItem extends React.Component {
 		if (this.state.isEditing) {
 			return (
 				<TableRowColumn style={styles.action}>
-					<RaisedButton onClick={this.onSaveClick.bind(this)}>Nevermind</RaisedButton><br />
-					<RaisedButton onClick={this.props.deleteTask.bind(this, this.props.task)}>DONE</RaisedButton>
+					<RaisedButton style={{margin: 10}} onClick={this.onSaveClick.bind(this)}>Nevermind</RaisedButton><br />
+					<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>DONE</RaisedButton>
 				</TableRowColumn>
 			);
 		}
 
 		return (
 			<TableRowColumn style={styles.action}>
-				<RaisedButton onClick={this.onEditClick.bind(this)}>Gender Neutral</RaisedButton>
-				 <RaisedButton onClick={this.onEditClick2.bind(this)}>Women Only</RaisedButton><br />
-				<RaisedButton onClick={this.onEditClick3.bind(this)}>Men</RaisedButton>
-				 <RaisedButton onClick={this.props.deleteTask.bind(this, this.props.task)}>Nevermind</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onEditClick.bind(this)}>GenderNeutral</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onEditClick2.bind(this)}>Women's</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onEditClick3.bind(this)}>Men</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>Nevermind</RaisedButton>
 			</TableRowColumn>
 		);
 	};

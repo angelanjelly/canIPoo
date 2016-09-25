@@ -1,17 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
 import TodosListHeader from './todos-list-header';
-import TodosListItem from './todos-list-item';
+import TodosListItem from './todos-item';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const styles = {
   container: {
-    textAlign: 'left',
     fontStyle: "georgia",
-    marginLeft: 'auto',
-    marginRight: 'auto',
     display: 'inline-block', //answer for centering the table,
-    width: 1000
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: 30
   },
   text: {
   	fontSize: 10,
