@@ -7,8 +7,6 @@ import {List, ListItem} from 'material-ui/List';
 import $ from 'jquery';
 import {slackUrl} from '../../secret.js';
 import * as firebase from 'firebase';
-import { FirebaseapiKey, FirebaseauthDomain, FirebaseDatabase, FirebaseStorage } from '../../secret.js';
-
 const todos = [];
 
 const styles = {
@@ -84,17 +82,11 @@ export default class App extends React.Component {
 				<TodosList
 					style={styles.inside}
 					todos={this.state.todos}
-					toggleTask={this.toggleTask.bind(this)}
 					saveTask={this.saveTask.bind(this)}
 					deleteTask={this.deleteTask.bind(this)}
 				/>
 			</div>
 		);
-	}
-	toggleTask(task) {
-		const foundTodo = _.find(this.state.todos, todo => todo.task === task)
-		foundTodo.isCompleted = !foundTodo.isCompleted;
-		this.setState({ todos: this.state.todos })
 	}
 	createTask(task) {
 		var newTodo = {

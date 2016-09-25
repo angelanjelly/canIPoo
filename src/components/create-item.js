@@ -14,7 +14,7 @@ export default class CreateItem extends React.Component {
 
 	renderError() {
 		if (!this.state.error) { return null; }
-			return <div style={{ color: 'red', fontSize: 15, fontStyle: "georgia" }}>{this.state.error}</div>
+			return <div style={{ color: 'red', fontSize: 25, fontStyle: "georgia" }}>{this.state.error}</div>
 		return;
 	}
 
@@ -40,16 +40,15 @@ export default class CreateItem extends React.Component {
 		}
 
 		this.setState({ error: null })
-		//console.log(this.props.createTask);
 		this.props.createTask(task);
 		this.refs.createInput.value = "";
 	}
 
     validateInput(task) {
         if (!task) {
-            return 'Please enter a task.';
+            return 'Please enter a nickname.';
         } else if (_.find(this.props.todos, todo => todo.task === task)) {
-            return 'Task already exists.';
+            return 'Nickname already exists.';
         } else {
             return null;
         }

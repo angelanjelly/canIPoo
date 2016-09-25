@@ -33,10 +33,6 @@ export default class TodosList extends React.Component {
 			<TodosListItem key={index} {...todo} {...props} />);
 	}
 
-	//this.props => {todos: array2} this.props.todos
-	//{...todo} =
-	//task={todo.task} isCompleted={todo.isCompleted}
-
 	render() {
 
 		return (

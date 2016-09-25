@@ -41,35 +41,29 @@ export default class TodosListItem extends React.Component {
 			if (this.state.isItTheFirstOne) {
 				return (
 					<TableRowColumn>
-						<form style={styles.form} onSubmit={this.onSaveClick.bind(this)}>
-							<img src="src/img/bathroom.jpg" width="40" height="40" />
-							{ task }
-						</form>
+						<img src="src/img/bathroom.jpg" width="40" height="40" />
+						{ task }
 					</TableRowColumn>
 				)
 			} else if (!this.state.isItTheFirstOne && !this.state.isThisForMales){
 				return (
 					<TableRowColumn>
-						<form style={styles.form} onSubmit={this.onSaveClick.bind(this)}>
-							<img src="src/img/woman.jpg" height="40" />
-							{ task }
-						</form>
+						<img src="src/img/woman.jpg" height="40" />
+						{ task }
 					</TableRowColumn>
 				)
 			} else if (this.state.isThisForMales) {
 				return (
 					<TableRowColumn>
-						<form style={styles.form} onSubmit={this.onSaveClick.bind(this)}>
-							<img src="src/img/man.jpg" height="40" />
-							{ task }
-						</form>
+						<img src="src/img/man.jpg" height="40" />
+						{ task }
 					</TableRowColumn>
 				)				
 			} 
 		}
 		return (
 
-			<TableRowColumn style={taskStyle} onClick={this.props.toggleTask.bind(this, task)}>
+			<TableRowColumn style={taskStyle}>
 				{ task }
 			</TableRowColumn>
 
@@ -89,7 +83,7 @@ export default class TodosListItem extends React.Component {
 		return (
 			<TableRowColumn style={styles.action}>
 				<RaisedButton style={{margin: 10}} onClick={this.onEditClick.bind(this)}>GenderNeutral</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick2.bind(this)}>Women's</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onEditClick2.bind(this)}>Women</RaisedButton><br />
 				<RaisedButton style={{margin: 10}} onClick={this.onEditClick3.bind(this)}>Men</RaisedButton>
 				<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>Nevermind</RaisedButton>
 			</TableRowColumn>
