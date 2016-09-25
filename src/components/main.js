@@ -56,7 +56,7 @@ export default class App extends React.Component {
 				var todo = {
 					id: data.key,
 					task: data.val().task,
-					isCompleted: data.val().isCompleted
+					whichOneIsIt: data.val().whichOneIsIt
 				}
 				todos.push(todo);
 			});
@@ -85,7 +85,7 @@ export default class App extends React.Component {
 	createTask(task) {
 		var newTodo = {
 			task: task,
-			isCompleted: false
+			whichOneIsIt: false
 		};
 		database.ref('todos').push(newTodo);
 		this.setState({ todos: this.state.todos.concat(newTodo) });
@@ -110,7 +110,7 @@ export default class App extends React.Component {
 		});
 		var keyVal = idx[0].id; //an array of an object
 		console.log('status', status);
-		database.ref('todos').child(keyVal).update({task: taskToUpdate, isCompleted: status });
+		database.ref('todos').child(keyVal).update({task: taskToUpdate, whichOneIsIt: status });
 		this.componentDidMount();
 	}
 

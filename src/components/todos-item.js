@@ -27,28 +27,28 @@ export default class TodosListItem extends React.Component {
 	}
 
 	renderTaskSection() {
-		const { task, isCompleted } = this.props;
+		const { task, whichOneIsIt } = this.props;
 		const taskStyle = {
-			color: isCompleted ? 'red' : 'brown',
+			color: whichOneIsIt ? 'red' : 'brown',
 			cursor: 'pointer',
 			fontStyle: 'georgia',
 			fontSize: 20
 	}
-		if (isCompleted === '1') {
+		if (whichOneIsIt === '1') {
 			return (
 				<TableRowColumn style={styles.form}>
 					<img src="src/img/bathroom.jpg" width="40" height="40" />
 					<span style={{color: 'white'}}>___ __</span>{ task }
 				</TableRowColumn>
 			)
-		} else if (isCompleted === '2'){
+		} else if (whichOneIsIt === '2'){
 			return (
 				<TableRowColumn style={styles.form}>
 					<img src="src/img/woman.jpg" height="40" />
 					<span style={{color: 'white'}}>_______</span>{ task }
 				</TableRowColumn>
 			)
-		} else if (isCompleted === '3') {
+		} else if (whichOneIsIt === '3') {
 			return (
 				<TableRowColumn style={styles.form}>
 					<img src="src/img/man.jpg" height="40" />
