@@ -22,10 +22,7 @@ export default class TodosListItem extends React.Component {
 		super(props);
 
 		this.state = {
-			isEditing: false,
-			isItTheFirstOne: false,
-			isThisForMales: false,
-			todos: this.props.todos
+
 		}
 	}
 
@@ -68,24 +65,16 @@ export default class TodosListItem extends React.Component {
 	}
 	
 	renderActionsSection() {
-		if (this.state.isEditing) {
-			return (
-				<TableRowColumn style={styles.action}>
-					<RaisedButton style={{margin: 10}} onClick={this.onSaveClick.bind(this)}>Nevermind</RaisedButton><br />
-					<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>DONE</RaisedButton>
-				</TableRowColumn>
-			);
-		}
-
 		return (
 			<TableRowColumn style={styles.action}>
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick.bind(this, this.props.task)}>GenderNeutral</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick2.bind(this, this.props.task)}>Women</RaisedButton><br />
-				<RaisedButton style={{margin: 10}} onClick={this.onEditClick3.bind(this, this.props.task)}>Men</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>Nevermind</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClickNeutral.bind(this, this.props.task)}>GenderNeutral</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClickWomen.bind(this, this.props.task)}>Women</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onClickMen.bind(this, this.props.task)}>Men</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.props.deleteTask.bind(this, this.props.task)}>X</RaisedButton>
 			</TableRowColumn>
 		);
 	};
+
 	render() {
 		return (
 			<TableRow>
@@ -95,23 +84,13 @@ export default class TodosListItem extends React.Component {
 		);
 	}
 
-	onEditClick(todo) {
+	onClickNeutral(todo) {
 		this.props.updateTask(todo, '1');
-		// this.setState({ todos: this.props.todos});
 	}
-	onEditClick2(todo) {
+	onClickWomen(todo) {
 		this.props.updateTask(todo, '2');
-		// this.setState({ todos: this.props.todos});
 	}
-	onEditClick3(todo) {
+	onClickMen(todo) {
 		this.props.updateTask(todo, '3');
-		// this.setState({ todos: this.props.todos});
-	}
-	onCancelClick() {
-		this.setState({ isEditing: false});
-	}
-	onSaveClick(event) {
-		event.preventDefault();
-		this.setState({ isEditing: false });
 	}
 }
