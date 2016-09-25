@@ -2,6 +2,7 @@ import React from 'react';
 import CreateItem from './create-item';
 import TodosList from './todos-list';
 import Waiting from './waiting';
+import Title from './title';
 import Subheader from 'material-ui/Subheader';
 import {List, ListItem} from 'material-ui/List';
 import $ from 'jquery';
@@ -14,10 +15,6 @@ const styles = {
 	    textAlign: 'center',
 	    fontStyle: "georgia",
 	    margin: 'auto',
-	},
-	title: {
-	  	fontSize: 70,
-	  	marginTop: 30
 	},
 	inside: {
 	  	textAlign: 'center',
@@ -71,12 +68,8 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div style={styles.container}>
-				<h1 style={styles.title}>Can I P<img src="/src/img/poo.png" width="50" height="50" /><img src="/src/img/poo.png" width="50" height="50" />?</h1>
-				<h4>SOS! request for toilet paper </h4>
-				<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.toiletPaperForGenderNeu.bind(null, this)} />
-				<span style={{color:'white'}}>_______</span>
-				<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.toiletPaperForWomens.bind(null, this)} /><br />
-				<span>Gender Neutral Bathroom</span><span style={{color:'white'}}>_</span><span>Women's Bathroom   </span>
+				<Title toiletPaperForGenderNeu={this.toiletPaperForGenderNeu.bind(this)}
+					toiletPaperForWomens={this.toiletPaperForWomens.bind(this)} />
 				<Waiting todos={this.state.todos} />
 				<CreateItem style={styles.inside} todos={this.state.todos} createTask={this.createTask.bind(this)} />
 				<TodosList
