@@ -3,13 +3,13 @@ import React from 'react';
 import TodosListHeader from './todos-list-header';
 import TodosListItem from './todos-item';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-
 const styles = {
   container: {
     fontStyle: "georgia",
     display: 'inline-block', //answer for centering the table,
     backgroundColor: 'rgba(0,0,0,0)',
-    marginTop: 30
+    marginTop: 30,
+    maxWidth: 700
   },
   text: {
   	fontSize: 10,
@@ -39,7 +39,7 @@ export default class TodosList extends React.Component {
 			<div style={styles.container}>
 				<Table>
 					<TableHeader adjustForCheckbox={this.state.showCheckboxes}> 
-						<TableRow>
+						<TableRow style={{fontSize: 30}}>
 							<TableHeaderColumn>Nickname</TableHeaderColumn>
 							<TableHeaderColumn>Action</TableHeaderColumn>
 						</TableRow>
