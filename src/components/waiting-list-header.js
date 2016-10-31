@@ -7,7 +7,7 @@ export default class WaitingListHeader extends React.Component {
 				<TableHeader style={{textAlign: 'right'}}>
 					<TableRow>
 						<TableHeaderColumn>Nickname</TableHeaderColumn>
-						<TableHeaderColumn>Action</TableHeaderColumn>
+						<TableHeaderColumn>Equipment</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
 		);
