@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateItem from './create-item';
-import TodosList from './todos-list';
+import WaitingList from './waiting-list';
 import Waiting from './waiting';
 import Title from './title';
 import Subheader from 'material-ui/Subheader';
