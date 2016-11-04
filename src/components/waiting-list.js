@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
-import TodosListHeader from './todos-list-header';
-import TodosListItem from './todos-item';
+import WaitingListHeader from './waiting-list-header';
+import WaitingListItem from './waiting-item';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 const styles = {
   container: {
@@ -17,7 +17,7 @@ const styles = {
   }
 };
 
-export default class TodosList extends React.Component {
+export default class WaitingList extends React.Component {
 
 	constructor(props) {
 	super(props);
@@ -30,7 +30,7 @@ export default class TodosList extends React.Component {
 	renderItems() {
 		const props = _.omit(this.props, 'todos');
 		return _.map(this.props.todos, (waiting, index) => 
-			<TodosListItem updateNickname={this.props.updateNickname.bind(this)} key={index} {...waiting} {...props} />);
+			<WaitingListItem updateNickname={this.props.updateNickname.bind(this)} key={index} {...waiting} {...props} />);
 	}
 
 	render() {

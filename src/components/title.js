@@ -17,21 +17,19 @@ export default class Title extends React.Component {
 	render() {
 		return (
 			<div>
-				<span style={{ fontSize: 60, fontStyle:'Helvetica' }}>Can I P<img src="/src/img/poo2.png" width="50" height="50" /><img src="/src/img/poo2.png" width="50" height="50" />?</span>
-				<br />
-				<span style={{ fontSize: 20, fontStyle:'georgia' }}>Do you still awkwardly wait in line for the Bathroom?</span><br />
+				<span style={{ fontSize: 60, fontStyle:'Helvetica' }}>yourTurn</span>
+				<br /><br />
+				<span style={{ fontSize: 20, fontStyle:'georgia' }}>Do you still awkwardly wait in line for gym equipment at your gym?</span><br />
 				<Card style={{ marginTop: 10, marginBottom: 0, width: 400, display: 'inline-block'}}>
 				<CardHeader
-					title="SOS! request for toilet paper!"
+					title="need assistance?"
 					subtitle="Click here to see the options."
 					avatar="/src/img/crying.png"
 					actAsExpander={true}
 					showExpandableButton={true}/>
 				<CardText expandable={true}>
-					<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.props.toiletPaperForGenderNeu.bind(null, this)} />
-					<span style={{color:'white'}}>_______</span>
-					<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.props.toiletPaperForWomens.bind(null, this)} /><br />
-					<span>"Gender Neutral Bathroom"</span><span style={{color:'white'}}>_</span><span>"Women's Bathroom   "</span>
+					<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.props.needForAssistance.bind(null, this)} />
+					<span>"Gender Neutral Bathroom"</span>
 				</CardText>
 				</Card>
 			</div>

@@ -17,7 +17,7 @@ const styles = {
 		textAlign: 'right'
 	}
 }
-export default class TodosListItem extends React.Component {
+export default class WaitingListItem extends React.Component {
 
 	renderNicknameSection() {
 		const { nickname, whichOneIsIt } = this.props;

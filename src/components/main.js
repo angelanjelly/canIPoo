@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateItem from './create-item';
-import TodosList from './todos-list';
+import WaitingList from './waiting-list';
 import Waiting from './waiting';
 import Title from './title';
 import Subheader from 'material-ui/Subheader';
@@ -67,11 +67,10 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div style={styles.container}>
-				<Title toiletPaperForGenderNeu={this.toiletPaperForGenderNeu.bind(this)}
-					toiletPaperForWomens={this.toiletPaperForWomens.bind(this)} />
+				<Title needForAssistance={this.needForAssistance.bind(this)} />
 				<Waiting todos={this.state.todos} />
 				<CreateItem style={styles.inside} todos={this.state.todos} createNickname={this.createNickname.bind(this)} />
-				<TodosList
+				<WaitingList
 					style={styles.inside}
 					updateNickname={this.updateNickname.bind(this)}
 					todos={this.state.todos}
@@ -81,6 +80,7 @@ export default class App extends React.Component {
 			</div>
 		);
 	}
+	
 	createNickname(nickname) {
 		var newTodo = {
 			nickname: nickname,
@@ -111,23 +111,14 @@ export default class App extends React.Component {
 		this.componentDidMount();
 	}
 
-	toiletPaperForGenderNeu() {
+	needForAssistance() {
 		$.ajax({
   		type: "POST",
  		url: slackUrl,
-    	data: JSON.stringify({'text': 'SOS! PLEASE BRING SOME TOILET PAPER TO THE GENDER NEUTRAL BATHROOM!'}),
+    	data: JSON.stringify({'text': 'Need assistant!'}),
     	dataType: 'JSON'
 		});
-		console.log('requesting some toilet paper');
-	}
-	toiletPaperForWomens() {
-		$.ajax({
-  		type: "POST",
- 		url: slackUrl,
-    	data: JSON.stringify({'text': 'SOS! PLEASE BRING SOME TOILET PAPER TO THE WOMEN\'S BATHROOM!'}),
-    	dataType: 'JSON'
-		});
-		console.log('requesting some toilet paper');
+		console.log('requesting for assistance');
 	}
 
 }
