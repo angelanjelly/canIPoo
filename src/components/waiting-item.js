@@ -30,24 +30,52 @@ export default class WaitingListItem extends React.Component {
 		if (whichOneIsIt === '1') {
 			return (
 				<TableRowColumn style={styles.form}>
-					<img src="src/img/bathroom.jpg" width="40" height="40" />
+					<img src="src/img/1-cardio.png" height="60" />
 					<span style={{color: 'white'}}>___ __</span>{ nickname }
 				</TableRowColumn>
 			)
 		} else if (whichOneIsIt === '2'){
 			return (
 				<TableRowColumn style={styles.form}>
-					<img src="src/img/woman.jpg" height="40" />
+					<img src="src/img/2-cardio2.png" height="60" />
 					<span style={{color: 'white'}}>_______</span>{ nickname }
 				</TableRowColumn>
 			)
 		} else if (whichOneIsIt === '3') {
 			return (
 				<TableRowColumn style={styles.form}>
-					<img src="src/img/man.jpg" height="40" />
+					<img src="src/img/3-chest.png" height="60" />
 					<span style={{color: 'white'}}>_______</span>{ nickname }
 				</TableRowColumn>
-			)				
+			)
+		} else if (whichOneIsIt === '4') {
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/4-handgrip.png" height="60" />
+					<span style={{color: 'white'}}>_______</span>{ nickname }
+				</TableRowColumn>
+			)
+		} else if (whichOneIsIt === '5') {
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/5-rings.png" height="60" />
+					<span style={{color: 'white'}}>_______</span>{ nickname }
+				</TableRowColumn>
+			)
+		} else if (whichOneIsIt === '6') {
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/6-weight-10kg.png" height="60" />
+					<span style={{color: 'white'}}>_______</span>{ nickname }
+				</TableRowColumn>
+			)
+		} else if (whichOneIsIt === '7') {
+			return (
+				<TableRowColumn style={styles.form}>
+					<img src="src/img/7-dumbbell.png" height="60" />
+					<span style={{color: 'white'}}>_______</span>{ nickname }
+				</TableRowColumn>
+			)
 		} else {
 			return (
 				<TableRowColumn style={styles.form}>
@@ -60,9 +88,13 @@ export default class WaitingListItem extends React.Component {
 	renderActionsSection() {
 		return (
 			<TableRowColumn style={styles.action}>
-				<RaisedButton style={{margin: 10}} onClick={this.onClickNeutral.bind(this, this.props.nickname)}>GenderNeutral</RaisedButton>
-				<RaisedButton style={{margin: 10}} onClick={this.onClickWomen.bind(this, this.props.nickname)}>Women</RaisedButton><br />
-				<RaisedButton style={{margin: 10}} onClick={this.onClickMen.bind(this, this.props.nickname)}>Men</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClick1.bind(this, this.props.nickname)}>Cardio 1</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClick2.bind(this, this.props.nickname)}>Cardio 2</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onClick3.bind(this, this.props.nickname)}>Chest</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClick4.bind(this, this.props.nickname)}>Hand Grip</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onClick5.bind(this, this.props.nickname)}>Rings</RaisedButton>
+				<RaisedButton style={{margin: 10}} onClick={this.onClick6.bind(this, this.props.nickname)}>Weight-10kg</RaisedButton><br />
+				<RaisedButton style={{margin: 10}} onClick={this.onClick7.bind(this, this.props.nickname)}>Dumbbell</RaisedButton>
 				<RaisedButton style={{margin: 10}} onClick={this.props.deleteNickname.bind(this, this.props.nickname)}>X</RaisedButton>
 			</TableRowColumn>
 		);
@@ -77,13 +109,25 @@ export default class WaitingListItem extends React.Component {
 		);
 	}
 
-	onClickNeutral(nickname) {
+	onClick1(nickname) {
 		this.props.updateNickname(nickname, '1');
 	}
-	onClickWomen(nickname) {
+	onClick2(nickname) {
 		this.props.updateNickname(nickname, '2');
 	}
-	onClickMen(nickname) {
+	onClick3(nickname) {
 		this.props.updateNickname(nickname, '3');
+	}
+	onClick4(nickname) {
+		this.props.updateNickname(nickname, '4');
+	}
+	onClick5(nickname) {
+		this.props.updateNickname(nickname, '5');
+	}
+	onClick6(nickname) {
+		this.props.updateNickname(nickname, '6');
+	}
+	onClick7(nickname) {
+		this.props.updateNickname(nickname, '7');
 	}
 }

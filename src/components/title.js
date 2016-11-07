@@ -29,7 +29,7 @@ export default class Title extends React.Component {
 					showExpandableButton={true}/>
 				<CardText expandable={true}>
 					<img src="/src/img/toilet-paper.jpg" width="60" height="60" onClick={this.props.needForAssistance.bind(null, this)} />
-					<span>"Gender Neutral Bathroom"</span>
+					<span>"Request for assistance"</span>
 				</CardText>
 				</Card>
 			</div>
