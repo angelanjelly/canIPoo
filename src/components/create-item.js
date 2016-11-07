@@ -21,7 +21,7 @@ export default class CreateItem extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.handleCreate.bind(this)}>
-				<input type="text" style={{ width: 300, height: 34, fontSize: 15 }} placeholder="Do You Have to Use the Bathroom?" ref="createInput"/>
+				<input type="text" style={{ width: 300, height: 34, fontSize: 15 }} placeholder="Which gym equipment are you waiting to use?" ref="createInput"/>
 				<RaisedButton onClick={this.handleCreate.bind(this)}>Create</RaisedButton>
 				{this.renderError()}
 			</form>
