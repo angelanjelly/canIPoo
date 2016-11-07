@@ -3,6 +3,7 @@ import CreateItem from './create-item';
 import WaitingList from './waiting-list';
 import Waiting from './waiting';
 import Title from './title';
+import Footer from './main-footer';
 import Subheader from 'material-ui/Subheader';
 import {List, ListItem} from 'material-ui/List';
 import $ from 'jquery';
@@ -77,6 +78,7 @@ export default class App extends React.Component {
 					saveNickname={this.saveNickname.bind(this)}
 					deleteNickname={this.deleteNickname.bind(this)}
 				/>
+				<Footer />
 			</div>
 		);
 	}
