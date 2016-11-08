@@ -9,7 +9,7 @@ const styles = {
     display: 'inline-block', //answer for centering the table,
     backgroundColor: 'rgba(0,0,0,0)',
     marginTop: 30,
-    maxWidth: 700
+    maxWidth: 800
   },
   text: {
   	fontSize: 10,
