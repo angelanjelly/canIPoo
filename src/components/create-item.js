@@ -20,7 +20,7 @@ export default class CreateItem extends React.Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleCreate.bind(this)}>
+			<form onSubmit={this.handleCreate.bind(this)} id="startpoint">
 				<input type="text" style={{ width: 450, height: 34, fontSize: 15 }} placeholder="Which gym equipment are you waiting to use?" ref="createInput"/>
 				<RaisedButton onClick={this.handleCreate.bind(this)}>Create</RaisedButton>
 				{this.renderError()}

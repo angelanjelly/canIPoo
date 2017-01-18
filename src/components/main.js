@@ -68,6 +68,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div style={styles.container}>
+				<Header></Header>
 				<Title needForAssistance={this.needForAssistance.bind(this)} />
 				<Waiting todos={this.state.todos} />
 				<CreateItem style={styles.inside} todos={this.state.todos} createNickname={this.createNickname.bind(this)} />
