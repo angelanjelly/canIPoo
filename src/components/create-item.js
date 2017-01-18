@@ -32,7 +32,8 @@ export default class CreateItem extends React.Component {
 		event.preventDefault();
 
 		const createInput = this.refs.createInput;
-		const nickname = createInput.value;
+		// const nickname = createInput.value;
+		const nickname = createInput.value + " - " + new Date().toLocaleTimeString();
 		const validateInput = this.validateInput(nickname);
 		if (validateInput) {
 			this.setState({ error: validateInput});
