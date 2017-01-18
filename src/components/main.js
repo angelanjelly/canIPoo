@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 import CreateItem from './create-item';
 import WaitingList from './waiting-list';
 import Waiting from './waiting';
